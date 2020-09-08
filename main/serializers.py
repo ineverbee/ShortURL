@@ -7,4 +7,4 @@ class URLSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ShortURL
-        fields = ['url', 'custom_url']
+        fields = ['url', 'new_url']

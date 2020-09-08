@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.urls import reverse
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
@@ -17,9 +18,10 @@ class URLViewset(BaseViewSet):
 
 
 def url_redirect(request, pk=None):
-	if pk == None:
-		pass
-	else:
-		obj = ShortURL.objects.get(custom_url=pk)
+	objs_urls = [i.new_url for i in ShortURL.objects.all()]
+	if pk in objs_urls:
+		obj = ShortURL.objects.get(new_url=pk)
 		return redirect(obj.url)
+	else:
+		pass
 		
